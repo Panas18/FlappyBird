@@ -46,7 +46,7 @@ class Pipe {
   }
 }
 
-pipe1 = new Pipe((startPos = -56));
-pipe2 = new Pipe((startPos = -250));
-pipe1.move();
-pipe2.move();
+// pipe1 = new Pipe((startPos = -56));
+// pipe2 = new Pipe((startPos = -250));
+// pipe1.move();
+// pipe2.move();
