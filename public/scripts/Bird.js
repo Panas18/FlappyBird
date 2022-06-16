@@ -13,18 +13,22 @@ class Bird {
     this.element.style.height = this.height + "px";
     this.element.style.top = this.currentY + "px";
     this.element.style.left = this.x + "px";
-    this.element.style.border = "1px solid red";
     this.isjumping = false;
+    this.iscolliding = false;
   }
 
   fly() {
     let styleIndex = 0;
-    setInterval(() => {
+    let flyAnimation = setInterval(() => {
       let image = `url('./images/${birdStyle[styleIndex]}')`;
       this.element.style.backgroundImage = image;
       styleIndex += 1;
       if (styleIndex == 3) {
         styleIndex = 0;
+      }
+      if (this.iscolliding) {
+        clearInterval(flyAnimation);
+        this.drop();
       }
     }, 1000 / 30);
   }
@@ -39,7 +43,7 @@ class Bird {
       this.velocity += 0.3;
       this.element.style.top = this.currentY + "px";
       this.element.style.transform = `rotate(${this.angle}deg)`;
-      if (this.isjumping) {
+      if (this.isjumping || this.currentY >= 385) {
         clearInterval(dropAnimation);
       }
     }, 1000 / 60);
@@ -55,7 +59,7 @@ class Bird {
       change += 10;
       this.element.style.top = this.currentY + "px";
       this.element.style.transform = `rotate(${this.angle}deg)`;
-      if (change >= 50) {
+      if (change >= 50 || this.currentY <= 20) {
         clearInterval(jumpAnimation);
         this.isjumping = false;
         this.drop();

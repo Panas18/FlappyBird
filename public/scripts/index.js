@@ -5,11 +5,13 @@ pipe1.move();
 
 bird = new Bird();
 bird.fly();
-// bird.drop();
+bird.drop();
 
 document.addEventListener("keyup", (e) => {
   if (e.key == " ") {
-    bird.jump();
+    if (!bird.iscolliding) {
+      bird.jump();
+    }
   }
 });
 
@@ -54,9 +56,9 @@ function detectCollision(pipe1, pipe2, bird) {
       bird.x + bird.width >= pipe.x &&
       bird.x <= pipe.x + pipe.w &&
       bird.currentY + bird.height >= pipe.y &&
-	  bird.currentY <=  pipe.y + pipe.h
+      bird.currentY <= pipe.y + pipe.h
     ) {
-      console.log("collision");
+      bird.iscolliding = true;
     }
     index += 1;
     if (index == 4) {

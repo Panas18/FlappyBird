@@ -14,7 +14,6 @@ class Pipe {
     this.topPipe.style.transform = "rotate(180deg)";
     this.topPipe.style.position = "absolute";
     this.topPipe.style.left = `${this.x}px`;
-    this.topPipe.style.border = "1px solid red";
 
     this.bottomPipe.style.backgroundImage = "url('./images/pipe-green.png')";
     this.bottomPipe.style.backgroundRepeat = "no-repeat";
@@ -23,7 +22,6 @@ class Pipe {
     this.bottomPipe.style.position = "absolute";
     this.bottomPipe.style.bottom = "0px";
     this.bottomPipe.style.left = `${this.x}px`;
-    this.bottomPipe.style.border = "1px solid red";
   }
 
   move() {
