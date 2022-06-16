@@ -55,3 +55,15 @@ body {
   left: 20%;
   top: 500px
 }
+
+.score {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top:2%;
+  text-align:center;
+  font-size: 30px;
+  color:white
+}

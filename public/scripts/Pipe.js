@@ -37,6 +37,7 @@ class Pipe {
       this.bottomPipe.style.height = `${this.bottomHeight}px`;
       this.bottomPipe.style.left = `${RESTARTPOS}px`;
       this.topPipe.style.left = `${RESTARTPOS}px`;
+      SCORE += 1;
     }
   }
 }

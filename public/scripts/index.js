@@ -1,16 +1,12 @@
+gameOver.addEventListener("click", (e) => {
+  window.location.reload(false);
+});
+
 pipe1 = new Pipe((startPos = 350));
 pipe2 = new Pipe((startPos = 550));
 bird = new Bird();
 bird.fly();
-bird.drop();
-
-document.addEventListener("keyup", (e) => {
-  if (e.key == " ") {
-    if (!bird.iscolliding) {
-      bird.jump();
-    }
-  }
-});
+// bird.drop();
 
 function endCard() {
   overY = 500;
@@ -60,6 +56,7 @@ function detectCollision(pipe1, pipe2, bird) {
   setInterval(() => {
     pipesObj = genPipesObj(pipe1, pipe2);
     pipe = pipesObj[index];
+
     if (
       bird.x + bird.width >= pipe.x &&
       bird.x <= pipe.x + pipe.w &&
@@ -77,13 +74,30 @@ function detectCollision(pipe1, pipe2, bird) {
 
 detectCollision(pipe1, pipe2, bird);
 
-var mainAnimation = setInterval(() => {
-  if (!bird.iscolliding) {
-    pipe2.move();
-    pipe1.move();
-  } else {
-    gameBase.style.animation = "none";
-    endCard();
-    clearInterval(mainAnimation);
+function main() {
+  document.addEventListener("keydown", (e) => {
+    if (e.key == " ") {
+      if (!bird.iscolliding) {
+        bird.jump();
+      }
+    }
+  });
+  var mainAnimation = setInterval(() => {
+    if (!bird.iscolliding) {
+      pipe2.move();
+      pipe1.move();
+      scoreTxt.innerHTML = `${SCORE}`;
+    } else {
+      gameBase.style.animation = "none";
+      endCard();
+      clearInterval(mainAnimation);
+    }
+  }, 1000 / 60);
+}
+
+document.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    main();
+    bird.drop();
   }
-}, 1000 / 60);
+});
