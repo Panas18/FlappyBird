@@ -5,6 +5,7 @@ class Pipe {
     this.bottomHeight = 425 - GAP - this.topHeight;
     this.topPipe = document.createElement("div");
     this.bottomPipe = document.createElement("div");
+    this.colliding = false;
     gameArea.appendChild(this.topPipe);
     gameArea.appendChild(this.bottomPipe);
     this.topPipe.style.backgroundImage = "url('./images/pipe-green.png')";
@@ -25,19 +26,17 @@ class Pipe {
   }
 
   move() {
-    setInterval(() => {
-      this.x -= 1;
-      this.topPipe.style.left = `${this.x}px`;
-      this.bottomPipe.style.left = `${this.x}px`;
-      if (this.x <= -52) {
-        this.x = RESTARTPOS;
-        this.topHeight = genRandomInt(275, 0);
-        this.bottomHeight = 425 - GAP - this.topHeight;
-        this.topPipe.style.height = `${this.topHeight}px`;
-        this.bottomPipe.style.height = `${this.bottomHeight}px`;
-        this.bottomPipe.style.left = `${RESTARTPOS}px`;
-        this.topPipe.style.left = `${RESTARTPOS}px`;
-      }
-    }, 1000 / 60);
+    this.x -= 1;
+    this.topPipe.style.left = `${this.x}px`;
+    this.bottomPipe.style.left = `${this.x}px`;
+    if (this.x <= -52) {
+      this.x = RESTARTPOS;
+      this.topHeight = genRandomInt(275, 0);
+      this.bottomHeight = 425 - GAP - this.topHeight;
+      this.topPipe.style.height = `${this.topHeight}px`;
+      this.bottomPipe.style.height = `${this.bottomHeight}px`;
+      this.bottomPipe.style.left = `${RESTARTPOS}px`;
+      this.topPipe.style.left = `${RESTARTPOS}px`;
+    }
   }
 }

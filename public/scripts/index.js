@@ -1,8 +1,5 @@
 pipe1 = new Pipe((startPos = 350));
 pipe2 = new Pipe((startPos = 550));
-pipe2.move();
-pipe1.move();
-
 bird = new Bird();
 bird.fly();
 bird.drop();
@@ -14,6 +11,17 @@ document.addEventListener("keyup", (e) => {
     }
   }
 });
+
+function endCard() {
+  overY = 500;
+  let overAnimation = setInterval(() => {
+    overY -= 10;
+    gameOver.style.top = overY + "px";
+    if (overY <= 50) {
+      clearInterval(overAnimation);
+    }
+  }, 1000 / 60);
+}
 
 function genPipesObj(pipe1, pipe2) {
   pipe1top = {
@@ -68,3 +76,14 @@ function detectCollision(pipe1, pipe2, bird) {
 }
 
 detectCollision(pipe1, pipe2, bird);
+
+var mainAnimation = setInterval(() => {
+  if (!bird.iscolliding) {
+    pipe2.move();
+    pipe1.move();
+  } else {
+    gameBase.style.animation = "none";
+    endCard();
+    clearInterval(mainAnimation);
+  }
+}, 1000 / 60);

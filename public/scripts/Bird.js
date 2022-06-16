@@ -2,7 +2,7 @@ class Bird {
   constructor() {
     this.element = document.createElement("div");
     gameArea.appendChild(this.element);
-    this.currentY = 200;
+    this.currentY = 100;
     this.x = 50;
     this.velocity = 1;
     this.angle = 0;
@@ -43,6 +43,9 @@ class Bird {
       this.velocity += 0.3;
       this.element.style.top = this.currentY + "px";
       this.element.style.transform = `rotate(${this.angle}deg)`;
+      if (this.currentY >= 385) {
+        this.iscolliding = true;
+      }
       if (this.isjumping || this.currentY >= 385) {
         clearInterval(dropAnimation);
       }

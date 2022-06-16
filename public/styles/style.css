@@ -13,6 +13,8 @@ body {
 .game-container {
   height: 500px;
   width: 350px;
+  position: relative;
+  overflow: hidden;
 }
 
 .game--area {
@@ -46,4 +48,10 @@ body {
   100% {
     background-position: -100px 0;
   }
+}
+
+.game--over {
+  position: absolute;
+  left: 20%;
+  top: 500px
 }
